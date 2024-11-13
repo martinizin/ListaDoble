@@ -55,14 +55,38 @@ public class ListaDobleGUI {
         BUSCARButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                String buscar=textField1.getText();
+                try {
+                    int valor=Integer.parseInt(buscar);
+                    int pos=lis.buscarListaDoble(valor);
+                    if (pos==-1){
+                        JOptionPane.showMessageDialog(null,"Elemento no encontrado!");
+                    }else {
+                        JOptionPane.showMessageDialog(null,
+                                "Elemento: "+valor+"encontrado en la posicion: "+pos);
+                    }
+                } catch (Exception ex) {
+                    throw new RuntimeException(ex);
+                }
             }
         });
         MOSTRARButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                try{
+                    lis.mostrarListaDoble(textArea1);
+                } catch (Exception ex) {
+                    throw new RuntimeException(ex);
+                }
             }
         });
+    }
+
+    public static void main(String[] args) {
+        JFrame frame = new JFrame("ListaDobleGUI");
+        frame.setContentPane(new ListaDobleGUI().pGenerlal);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.pack();
+        frame.setVisible(true);
     }
 }
